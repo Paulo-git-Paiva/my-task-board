@@ -1,0 +1,618 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$app-light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+      use-system-variables: true,
+    ),
+    typography: (
+      brand-family: 'Nunito',
+      plain-family: 'Open Sans',
+      use-system-variables: true,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+$app-dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$violet-palette,
+      tertiary: mat.$orange-palette,
+      use-system-variables: true,
+    ),
+    typography: (
+      brand-family: 'Nunito',
+      plain-family: 'Open Sans',
+      use-system-variables: true,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+:root {
+  --app-primary: #{mat.get-theme-color($app-light-theme, primary)};
+  --app-background: #fff;
+  --app-on-background: #{mat.get-theme-color($app-light-theme, neutral, 20)};
+  --app-inverse: #{mat.get-theme-color($app-light-theme, neutral, 50)};
+  --app-neutral: #{mat.get-theme-color($app-light-theme, neutral, 60)};
+  --app-neutral-0: #{mat.get-theme-color($app-light-theme, neutral, 100)};
+  --app-neutral-50: #{mat.get-theme-color($app-light-theme, neutral, 99)};
+  --app-neutral-100: #{mat.get-theme-color($app-light-theme, neutral, 98)};
+  --app-neutral-200: #{mat.get-theme-color($app-light-theme, neutral, 95)};
+  --app-neutral-300: #{mat.get-theme-color($app-light-theme, neutral, 90)};
+  --app-neutral-400: #{mat.get-theme-color($app-light-theme, neutral, 80)};
+  --app-neutral-450: #{mat.get-theme-color($app-light-theme, neutral, 70)};
+  --app-neutral-500: #{mat.get-theme-color($app-light-theme, neutral, 60)};
+  --app-neutral-600: #{mat.get-theme-color($app-light-theme, neutral, 50)};
+  --app-neutral-650: #{mat.get-theme-color($app-light-theme, neutral, 40)};
+  --app-neutral-700: #{mat.get-theme-color($app-light-theme, neutral, 35)};
+  --app-neutral-800: #{mat.get-theme-color($app-light-theme, neutral, 30)};
+  --app-neutral-900: #{mat.get-theme-color($app-light-theme, neutral, 25)};
+  --app-neutral-950: #{mat.get-theme-color($app-light-theme, neutral, 20)};
+  --app-neutral-1000: #{mat.get-theme-color($app-light-theme, neutral, 10)};
+  --app-neutral-variant: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      60
+    )};
+  --app-neutral-variant-0: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      100
+    )};
+  --app-neutral-variant-50: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      99
+    )};
+  --app-neutral-variant-100: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      98
+    )};
+  --app-neutral-variant-200: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      95
+    )};
+  --app-neutral-variant-300: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      90
+    )};
+  --app-neutral-variant-400: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      80
+    )};
+  --app-neutral-variant-450: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      70
+    )};
+  --app-neutral-variant-500: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      60
+    )};
+  --app-neutral-variant-600: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      50
+    )};
+  --app-neutral-variant-650: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      40
+    )};
+  --app-neutral-variant-700: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      35
+    )};
+  --app-neutral-variant-800: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      30
+    )};
+  --app-neutral-variant-900: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      25
+    )};
+  --app-neutral-variant-950: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      20
+    )};
+  --app-neutral-variant-1000: #{mat.get-theme-color(
+      $app-light-theme,
+      neutral-variant,
+      10
+    )};
+  --app-primary-0: #{mat.get-theme-color($app-light-theme, primary, 100)};
+  --app-primary-50: #{mat.get-theme-color($app-light-theme, primary, 99)};
+  --app-primary-100: #{mat.get-theme-color($app-light-theme, primary, 98)};
+  --app-primary-200: #{mat.get-theme-color($app-light-theme, primary, 95)};
+  --app-primary-300: #{mat.get-theme-color($app-light-theme, primary, 90)};
+  --app-primary-400: #{mat.get-theme-color($app-light-theme, primary, 80)};
+  --app-primary-450: #{mat.get-theme-color($app-light-theme, primary, 70)};
+  --app-primary-500: #{mat.get-theme-color($app-light-theme, primary, 60)};
+  --app-primary-600: #{mat.get-theme-color($app-light-theme, primary, 50)};
+  --app-primary-650: #{mat.get-theme-color($app-light-theme, primary, 40)};
+  --app-primary-700: #{mat.get-theme-color($app-light-theme, primary, 35)};
+  --app-primary-800: #{mat.get-theme-color($app-light-theme, primary, 30)};
+  --app-primary-900: #{mat.get-theme-color($app-light-theme, primary, 25)};
+  --app-primary-950: #{mat.get-theme-color($app-light-theme, primary, 20)};
+  --app-primary-1000: #{mat.get-theme-color($app-light-theme, primary, 10)};
+  --app-secondary-0: #{mat.get-theme-color($app-light-theme, secondary, 100)};
+  --app-secondary-50: #{mat.get-theme-color($app-light-theme, secondary, 99)};
+  --app-secondary-100: #{mat.get-theme-color($app-light-theme, secondary, 98)};
+  --app-secondary-200: #{mat.get-theme-color($app-light-theme, secondary, 95)};
+  --app-secondary-300: #{mat.get-theme-color($app-light-theme, secondary, 90)};
+  --app-secondary-400: #{mat.get-theme-color($app-light-theme, secondary, 80)};
+  --app-secondary-450: #{mat.get-theme-color($app-light-theme, secondary, 70)};
+  --app-secondary-500: #{mat.get-theme-color($app-light-theme, secondary, 60)};
+  --app-secondary-600: #{mat.get-theme-color($app-light-theme, secondary, 50)};
+  --app-secondary-650: #{mat.get-theme-color($app-light-theme, secondary, 40)};
+  --app-secondary-700: #{mat.get-theme-color($app-light-theme, secondary, 35)};
+  --app-secondary-800: #{mat.get-theme-color($app-light-theme, secondary, 30)};
+  --app-secondary-900: #{mat.get-theme-color($app-light-theme, secondary, 25)};
+  --app-secondary-950: #{mat.get-theme-color($app-light-theme, secondary, 20)};
+  --app-secondary-1000: #{mat.get-theme-color($app-light-theme, secondary, 10)};
+  --app-tertiary-0: #{mat.get-theme-color($app-light-theme, tertiary, 100)};
+  --app-tertiary-50: #{mat.get-theme-color($app-light-theme, tertiary, 99)};
+  --app-tertiary-100: #{mat.get-theme-color($app-light-theme, tertiary, 98)};
+  --app-tertiary-200: #{mat.get-theme-color($app-light-theme, tertiary, 95)};
+  --app-tertiary-300: #{mat.get-theme-color($app-light-theme, tertiary, 90)};
+  --app-tertiary-400: #{mat.get-theme-color($app-light-theme, tertiary, 80)};
+  --app-tertiary-450: #{mat.get-theme-color($app-light-theme, tertiary, 70)};
+  --app-tertiary-500: #{mat.get-theme-color($app-light-theme, tertiary, 60)};
+  --app-tertiary-600: #{mat.get-theme-color($app-light-theme, tertiary, 50)};
+  --app-tertiary-650: #{mat.get-theme-color($app-light-theme, tertiary, 40)};
+  --app-tertiary-700: #{mat.get-theme-color($app-light-theme, tertiary, 35)};
+  --app-tertiary-800: #{mat.get-theme-color($app-light-theme, tertiary, 30)};
+  --app-tertiary-900: #{mat.get-theme-color($app-light-theme, tertiary, 25)};
+  --app-tertiary-950: #{mat.get-theme-color($app-light-theme, tertiary, 20)};
+  --app-tertiary-1000: #{mat.get-theme-color($app-light-theme, tertiary, 10)};
+  --app-error-0: #{mat.get-theme-color($app-light-theme, error, 100)};
+  --app-error-50: #{mat.get-theme-color($app-light-theme, error, 99)};
+  --app-error-100: #{mat.get-theme-color($app-light-theme, error, 98)};
+  --app-error-200: #{mat.get-theme-color($app-light-theme, error, 95)};
+  --app-error-300: #{mat.get-theme-color($app-light-theme, error, 90)};
+  --app-error-400: #{mat.get-theme-color($app-light-theme, error, 80)};
+  --app-error-450: #{mat.get-theme-color($app-light-theme, error, 70)};
+  --app-error-500: #{mat.get-theme-color($app-light-theme, error, 60)};
+  --app-error-600: #{mat.get-theme-color($app-light-theme, error, 50)};
+  --app-error-650: #{mat.get-theme-color($app-light-theme, error, 40)};
+  --app-error-700: #{mat.get-theme-color($app-light-theme, error, 35)};
+  --app-error-800: #{mat.get-theme-color($app-light-theme, error, 30)};
+  --app-error-900: #{mat.get-theme-color($app-light-theme, error, 25)};
+  --app-error-950: #{mat.get-theme-color($app-light-theme, error, 20)};
+  --app-error-1000: #{mat.get-theme-color($app-light-theme, error, 10)};
+  --app-on-primary: #{mat.get-theme-color($app-light-theme, on-primary)};
+  --app-primary-container: #{mat.get-theme-color(
+      $app-light-theme,
+      primary-container
+    )};
+  --app-on-primary-container: #{mat.get-theme-color(
+      $app-light-theme,
+      on-primary-container
+    )};
+  --app-primary-fixed-dim: #{mat.get-theme-color(
+      $app-light-theme,
+      primary-fixed-dim
+    )};
+  --app-on-primary-fixed: #{mat.get-theme-color(
+      $app-light-theme,
+      on-primary-fixed
+    )};
+  --app-on-primary-fixed-variant: #{mat.get-theme-color(
+      $app-light-theme,
+      on-primary-fixed-variant
+    )};
+  --app-secondary: #{mat.get-theme-color($app-light-theme, secondary)};
+  --app-on-secondary: #{mat.get-theme-color($app-light-theme, on-secondary)};
+  --app-secondary-container: #{mat.get-theme-color(
+      $app-light-theme,
+      secondary-container
+    )};
+  --app-on-secondary-container: #{mat.get-theme-color(
+      $app-light-theme,
+      on-secondary-container
+    )};
+  --app-secondary-fixed-dim: #{mat.get-theme-color(
+      $app-light-theme,
+      secondary-fixed-dim
+    )};
+  --app-on-secondary-fixed: #{mat.get-theme-color(
+      $app-light-theme,
+      on-secondary-fixed
+    )};
+  --app-on-secondary-fixed-variant: #{mat.get-theme-color(
+      $app-light-theme,
+      on-secondary-fixed-variant
+    )};
+  --app-tertiary: #{mat.get-theme-color($app-light-theme, tertiary)};
+  --app-on-tertiary: #{mat.get-theme-color($app-light-theme, on-tertiary)};
+  --app-tertiary-container: #{mat.get-theme-color(
+      $app-light-theme,
+      tertiary-container
+    )};
+  --app-on-tertiary-container: #{mat.get-theme-color(
+      $app-light-theme,
+      on-tertiary-container
+    )};
+  --app-tertiary-fixed-dim: #{mat.get-theme-color(
+      $app-light-theme,
+      tertiary-fixed-dim
+    )};
+  --app-on-tertiary-fixed: #{mat.get-theme-color(
+      $app-light-theme,
+      on-tertiary-fixed
+    )};
+  --app-on-tertiary-fixed-variant: #{mat.get-theme-color(
+      $app-light-theme,
+      on-tertiary-fixed-variant
+    )};
+  --app-error: #{mat.get-theme-color($app-light-theme, error)};
+  --app-on-error: #{mat.get-theme-color($app-light-theme, on-error)};
+  --app-error-container: #{mat.get-theme-color(
+      $app-light-theme,
+      error-container
+    )};
+  --app-on-error-container: #{mat.get-theme-color(
+      $app-light-theme,
+      on-error-container
+    )};
+
+  --app-surface: #{mat.get-theme-color($app-light-theme, surface)};
+  --app-surface-dim: #{mat.get-theme-color($app-light-theme, surface-dim)};
+  --app-surface-bright: #{mat.get-theme-color($app-light-theme, surface-bright)};
+  --app-surface-container-lowest: #{mat.get-theme-color(
+      $app-light-theme,
+      surface-container-lowest
+    )};
+  --app-surface-container-low: #{mat.get-theme-color(
+      $app-light-theme,
+      surface-container-low
+    )};
+  --app-surface-container: #{mat.get-theme-color(
+      $app-light-theme,
+      surface-container
+    )};
+  --app-surface-container-high: #{mat.get-theme-color(
+      $app-light-theme,
+      surface-container-high
+    )};
+  --app-surface-container-highest: #{mat.get-theme-color(
+      $app-light-theme,
+      surface-container-highest
+    )};
+  --app-on-surface: #{mat.get-theme-color($app-light-theme, on-surface)};
+  --app-on-surface-variant: #{mat.get-theme-color(
+      $app-light-theme,
+      on-surface-variant
+    )};
+  --app-outline: #{mat.get-theme-color($app-light-theme, outline)};
+  --app-outline-variant: #{mat.get-theme-color(
+      $app-light-theme,
+      outline-variant
+    )};
+  --app-inverse-surface: #{mat.get-theme-color(
+      $app-light-theme,
+      inverse-surface
+    )};
+  --app-inverse-on-surface: #{mat.get-theme-color(
+      $app-light-theme,
+      inverse-on-surface
+    )};
+  --app-inverse-primary: #{mat.get-theme-color(
+      $app-light-theme,
+      inverse-primary
+    )};
+  --app-scrim: #{mat.get-theme-color($app-light-theme, scrim)};
+  --app-shadow: #{mat.get-theme-color($app-light-theme, shadow)};
+  --mat-table-background-color: var(--app-background);
+  --mat-table-row-item-outline-color: theme('borderColor.DEFAULT');
+  --mat-paginator-container-background-color: none;
+  --app-transition-transform: transform 0.15s linear;
+  --mdc-protected-button-container-height: 2.375rem;
+
+  @include mat.all-component-themes($app-light-theme);
+  @include mat.typography-hierarchy($app-light-theme);
+  @include mat.system-level-colors($app-light-theme);
+  @include mat.system-level-typography($app-light-theme);
+}
+
+html {
+  background: var(--app-background);
+  color: var(--app-on-background);
+}
+
+html.dark {
+  @include mat.all-component-colors($app-dark-theme);
+  @include mat.system-level-colors($app-dark-theme);
+  @include mat.system-level-typography($app-dark-theme);
+
+  --app-primary: #{mat.get-theme-color($app-dark-theme, primary)};
+  --app-background: #{mat.get-theme-color($app-dark-theme, neutral, 20)};
+  --app-on-background: #fff;
+  --app-inverse: #{mat.get-theme-color($app-dark-theme, neutral, 50)};
+  --app-neutral-0: #{mat.get-theme-color($app-dark-theme, neutral, 100)};
+  --app-neutral-50: #{mat.get-theme-color($app-dark-theme, neutral, 99)};
+  --app-neutral-100: #{mat.get-theme-color($app-dark-theme, neutral, 98)};
+  --app-neutral-200: #{mat.get-theme-color($app-dark-theme, neutral, 95)};
+  --app-neutral-300: #{mat.get-theme-color($app-dark-theme, neutral, 90)};
+  --app-neutral-400: #{mat.get-theme-color($app-dark-theme, neutral, 80)};
+  --app-neutral-450: #{mat.get-theme-color($app-dark-theme, neutral, 70)};
+  --app-neutral-500: #{mat.get-theme-color($app-dark-theme, neutral, 60)};
+  --app-neutral-600: #{mat.get-theme-color($app-dark-theme, neutral, 50)};
+  --app-neutral-650: #{mat.get-theme-color($app-dark-theme, neutral, 40)};
+  --app-neutral-700: #{mat.get-theme-color($app-dark-theme, neutral, 35)};
+  --app-neutral-800: #{mat.get-theme-color($app-dark-theme, neutral, 30)};
+  --app-neutral-900: #{mat.get-theme-color($app-dark-theme, neutral, 25)};
+  --app-neutral-950: #{mat.get-theme-color($app-dark-theme, neutral, 20)};
+  --app-neutral-1000: #{mat.get-theme-color($app-dark-theme, neutral, 10)};
+  --app-neutral-variant-0: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      100
+    )};
+  --app-neutral-variant-50: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      99
+    )};
+  --app-neutral-variant-100: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      98
+    )};
+  --app-neutral-variant-200: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      95
+    )};
+  --app-neutral-variant-300: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      90
+    )};
+  --app-neutral-variant-400: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      80
+    )};
+  --app-neutral-variant-450: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      70
+    )};
+  --app-neutral-variant-500: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      60
+    )};
+  --app-neutral-variant-600: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      50
+    )};
+  --app-neutral-variant-650: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      40
+    )};
+  --app-neutral-variant-700: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      35
+    )};
+  --app-neutral-variant-800: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      30
+    )};
+  --app-neutral-variant-900: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      25
+    )};
+  --app-neutral-variant-950: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      20
+    )};
+  --app-neutral-variant-1000: #{mat.get-theme-color(
+      $app-dark-theme,
+      neutral-variant,
+      10
+    )};
+  --app-primary-0: #{mat.get-theme-color($app-dark-theme, primary, 100)};
+  --app-primary-50: #{mat.get-theme-color($app-dark-theme, primary, 99)};
+  --app-primary-100: #{mat.get-theme-color($app-dark-theme, primary, 98)};
+  --app-primary-200: #{mat.get-theme-color($app-dark-theme, primary, 95)};
+  --app-primary-300: #{mat.get-theme-color($app-dark-theme, primary, 90)};
+  --app-primary-400: #{mat.get-theme-color($app-dark-theme, primary, 80)};
+  --app-primary-450: #{mat.get-theme-color($app-dark-theme, primary, 70)};
+  --app-primary-500: #{mat.get-theme-color($app-dark-theme, primary, 60)};
+  --app-primary-600: #{mat.get-theme-color($app-dark-theme, primary, 50)};
+  --app-primary-650: #{mat.get-theme-color($app-dark-theme, primary, 40)};
+  --app-primary-700: #{mat.get-theme-color($app-dark-theme, primary, 35)};
+  --app-primary-800: #{mat.get-theme-color($app-dark-theme, primary, 30)};
+  --app-primary-900: #{mat.get-theme-color($app-dark-theme, primary, 25)};
+  --app-primary-950: #{mat.get-theme-color($app-dark-theme, primary, 20)};
+  --app-primary-1000: #{mat.get-theme-color($app-dark-theme, primary, 10)};
+  --app-secondary-0: #{mat.get-theme-color($app-dark-theme, secondary, 100)};
+  --app-secondary-50: #{mat.get-theme-color($app-dark-theme, secondary, 99)};
+  --app-secondary-100: #{mat.get-theme-color($app-dark-theme, secondary, 98)};
+  --app-secondary-200: #{mat.get-theme-color($app-dark-theme, secondary, 95)};
+  --app-secondary-300: #{mat.get-theme-color($app-dark-theme, secondary, 90)};
+  --app-secondary-400: #{mat.get-theme-color($app-dark-theme, secondary, 80)};
+  --app-secondary-450: #{mat.get-theme-color($app-dark-theme, secondary, 70)};
+  --app-secondary-500: #{mat.get-theme-color($app-dark-theme, secondary, 60)};
+  --app-secondary-600: #{mat.get-theme-color($app-dark-theme, secondary, 50)};
+  --app-secondary-650: #{mat.get-theme-color($app-dark-theme, secondary, 40)};
+  --app-secondary-700: #{mat.get-theme-color($app-dark-theme, secondary, 35)};
+  --app-secondary-800: #{mat.get-theme-color($app-dark-theme, secondary, 30)};
+  --app-secondary-900: #{mat.get-theme-color($app-dark-theme, secondary, 25)};
+  --app-secondary-950: #{mat.get-theme-color($app-dark-theme, secondary, 20)};
+  --app-secondary-1000: #{mat.get-theme-color($app-dark-theme, secondary, 10)};
+  --app-tertiary-0: #{mat.get-theme-color($app-dark-theme, tertiary, 100)};
+  --app-tertiary-50: #{mat.get-theme-color($app-dark-theme, tertiary, 99)};
+  --app-tertiary-100: #{mat.get-theme-color($app-dark-theme, tertiary, 98)};
+  --app-tertiary-200: #{mat.get-theme-color($app-dark-theme, tertiary, 95)};
+  --app-tertiary-300: #{mat.get-theme-color($app-dark-theme, tertiary, 90)};
+  --app-tertiary-400: #{mat.get-theme-color($app-dark-theme, tertiary, 80)};
+  --app-tertiary-450: #{mat.get-theme-color($app-dark-theme, tertiary, 70)};
+  --app-tertiary-500: #{mat.get-theme-color($app-dark-theme, tertiary, 60)};
+  --app-tertiary-600: #{mat.get-theme-color($app-dark-theme, tertiary, 50)};
+  --app-tertiary-650: #{mat.get-theme-color($app-dark-theme, tertiary, 40)};
+  --app-tertiary-700: #{mat.get-theme-color($app-dark-theme, tertiary, 35)};
+  --app-tertiary-800: #{mat.get-theme-color($app-dark-theme, tertiary, 30)};
+  --app-tertiary-900: #{mat.get-theme-color($app-dark-theme, tertiary, 25)};
+  --app-tertiary-950: #{mat.get-theme-color($app-dark-theme, tertiary, 20)};
+  --app-tertiary-1000: #{mat.get-theme-color($app-dark-theme, tertiary, 10)};
+  --app-error-0: #{mat.get-theme-color($app-dark-theme, error, 100)};
+  --app-error-50: #{mat.get-theme-color($app-dark-theme, error, 99)};
+  --app-error-100: #{mat.get-theme-color($app-dark-theme, error, 98)};
+  --app-error-200: #{mat.get-theme-color($app-dark-theme, error, 95)};
+  --app-error-300: #{mat.get-theme-color($app-dark-theme, error, 90)};
+  --app-error-400: #{mat.get-theme-color($app-dark-theme, error, 80)};
+  --app-error-450: #{mat.get-theme-color($app-dark-theme, error, 70)};
+  --app-error-500: #{mat.get-theme-color($app-dark-theme, error, 60)};
+  --app-error-600: #{mat.get-theme-color($app-dark-theme, error, 50)};
+  --app-error-650: #{mat.get-theme-color($app-dark-theme, error, 40)};
+  --app-error-700: #{mat.get-theme-color($app-dark-theme, error, 35)};
+  --app-error-800: #{mat.get-theme-color($app-dark-theme, error, 30)};
+  --app-error-900: #{mat.get-theme-color($app-dark-theme, error, 25)};
+  --app-error-950: #{mat.get-theme-color($app-dark-theme, error, 20)};
+  --app-error-1000: #{mat.get-theme-color($app-dark-theme, error, 10)};
+  --app-on-primary: #{mat.get-theme-color($app-dark-theme, on-primary)};
+  --app-primary-container: #{mat.get-theme-color(
+      $app-dark-theme,
+      primary-container
+    )};
+  --app-on-primary-container: #{mat.get-theme-color(
+      $app-dark-theme,
+      on-primary-container
+    )};
+  --app-primary-fixed-dim: #{mat.get-theme-color(
+      $app-dark-theme,
+      primary-fixed-dim
+    )};
+  --app-on-primary-fixed: #{mat.get-theme-color(
+      $app-dark-theme,
+      on-primary-fixed
+    )};
+  --app-on-primary-fixed-variant: #{mat.get-theme-color(
+      $app-dark-theme,
+      on-primary-fixed-variant
+    )};
+  --app-secondary: #{mat.get-theme-color($app-dark-theme, secondary)};
+  --app-on-secondary: #{mat.get-theme-color($app-dark-theme, on-secondary)};
+  --app-secondary-container: #{mat.get-theme-color(
+      $app-dark-theme,
+      secondary-container
+    )};
+  --app-on-secondary-container: #{mat.get-theme-color(
+      $app-dark-theme,
+      on-secondary-container
+    )};
+  --app-secondary-fixed-dim: #{mat.get-theme-color(
+      $app-dark-theme,
+      secondary-fixed-dim
+    )};
+  --app-on-secondary-fixed: #{mat.get-theme-color(
+      $app-dark-theme,
+      on-secondary-fixed
+    )};
+  --app-on-secondary-fixed-variant: #{mat.get-theme-color(
+      $app-dark-theme,
+      on-secondary-fixed-variant
+    )};
+  --app-tertiary: #{mat.get-theme-color($app-dark-theme, tertiary)};
+  --app-on-tertiary: #{mat.get-theme-color($app-dark-theme, on-tertiary)};
+  --app-tertiary-container: #{mat.get-theme-color(
+      $app-dark-theme,
+      tertiary-container
+    )};
+  --app-on-tertiary-container: #{mat.get-theme-color(
+      $app-dark-theme,
+      on-tertiary-container
+    )};
+  --app-tertiary-fixed-dim: #{mat.get-theme-color(
+      $app-dark-theme,
+      tertiary-fixed-dim
+    )};
+  --app-on-tertiary-fixed: #{mat.get-theme-color(
+      $app-dark-theme,
+      on-tertiary-fixed
+    )};
+  --app-on-tertiary-fixed-variant: #{mat.get-theme-color(
+      $app-dark-theme,
+      on-tertiary-fixed-variant
+    )};
+  --app-error: #{mat.get-theme-color($app-dark-theme, error)};
+  --app-on-error: #{mat.get-theme-color($app-dark-theme, on-error)};
+  --app-error-container: #{mat.get-theme-color($app-dark-theme, error-container)};
+  --app-on-error-container: #{mat.get-theme-color(
+      $app-dark-theme,
+      on-error-container
+    )};
+  --app-surface: #{mat.get-theme-color($app-dark-theme, surface)};
+  --app-surface-dim: #{mat.get-theme-color($app-dark-theme, surface-dim)};
+  --app-surface-bright: #{mat.get-theme-color($app-dark-theme, surface-bright)};
+  --app-surface-container-lowest: #{mat.get-theme-color(
+      $app-dark-theme,
+      surface-container-lowest
+    )};
+  --app-surface-container-low: #{mat.get-theme-color(
+      $app-dark-theme,
+      surface-container-low
+    )};
+  --app-surface-container: #{mat.get-theme-color(
+      $app-dark-theme,
+      surface-container
+    )};
+  --app-surface-container-high: #{mat.get-theme-color(
+      $app-dark-theme,
+      surface-container-high
+    )};
+  --app-surface-container-highest: #{mat.get-theme-color(
+      $app-dark-theme,
+      surface-container-highest
+    )};
+  --app-on-surface: #{mat.get-theme-color($app-dark-theme, on-surface)};
+  --app-on-surface-variant: #{mat.get-theme-color(
+      $app-light-theme,
+      on-surface-variant
+    )};
+  --app-outline: #{mat.get-theme-color($app-dark-theme, outline)};
+  --app-outline-variant: #{mat.get-theme-color($app-dark-theme, outline-variant)};
+  --app-inverse-surface: #{mat.get-theme-color($app-dark-theme, inverse-surface)};
+  --app-inverse-on-surface: #{mat.get-theme-color(
+      $app-dark-theme,
+      inverse-on-surface
+    )};
+  --app-inverse-primary: #{mat.get-theme-color($app-dark-theme, inverse-primary)};
+  --app-scrim: #{mat.get-theme-color($app-dark-theme, scrim)};
+  --app-shadow: #{mat.get-theme-color($app-dark-theme, shadow)};
+  --mat-table-background-color: var(--app-background);
+  --mat-table-row-item-outline-color: theme('colors.inverse');
+  --mat-paginator-container-background-color: none;
+  --app-warn: theme('colors.red.400');
+}
