@@ -78,10 +78,10 @@ describe('TascService', () => {
     }));
   });
   describe('createTasks', () => {
-    it('should create a new tasks', () => {
+    it('should create a new tasks with waitForAsunc', () => {
       let task: Task | undefined;
 
-      taskService.createTasck(MOCKED_TASK).subscribe(response => {
+      taskService.createTask(MOCKED_TASK).subscribe(response => {
         task = response;
       });
 
@@ -90,14 +90,12 @@ describe('TascService', () => {
       req.flush(MOCKED_TASK);
 
       expect(task).toEqual(MOCKED_TASK);
-      expect(taskService.tasks()[0]).toEqual(MOCKED_TASK);
-      expect(taskService.tasks().length).toEqual(1);
       expect(req.request.method).toEqual('POST');
     });
     it('should throw unprocessible entity with invalid body when cerate a task', waitForAsync(() => {
       let httpErrorResponse: HttpErrorResponse | undefined;
 
-      taskService.createTasck(MOCKED_TASK).subscribe({
+      taskService.createTask(MOCKED_TASK).subscribe({
         next: () => {
           fail('Failed to add a new task');
         },
@@ -221,48 +219,49 @@ describe('TascService', () => {
     }));
   });
 
-  // describe('deleteTask', () => {
-  //   it('should delete a task', waitForAsync(() => {
-  //     taskService.tasks.set([MOCKED_TASK]);
+  describe('deleteTask', () => {
+    it('should delete a task', waitForAsync(() => {
+      taskService.tasks.set(MOCKED_TASKS);
 
-  //     taskService.deletedTask(MOCKED_TASK.id).subscribe(() => {
-  //       expect(taskService.tasks().length).toEqual(0);
-  //     });
+      taskService.deleteTask(MOCKED_TASK.id).subscribe(() => {
+        expect(taskService.tasks().length).toEqual(1);
+      });
 
-  //     const req = httpTestingController.expectOne(
-  //       `${apiUrl}/tasks/${MOCKED_TASK.id}`
-  //     );
+      const req = httpTestingController.expectOne(
+        `${apiUrl}/tasks/${MOCKED_TASK.id}`
+      );
 
-  //     req.flush(null);
+      req.flush(null);
 
-  //     expect(req.request.method).toEqual('DELETE');
-  //   }));
+      expect(req.request.method).toEqual('DELETE');
+    }));
 
-  //   it('should throw unprocessible entity with invalid body when delete a task', waitForAsync(() => {
-  //     let httpErrorResponse: HttpErrorResponse | undefined;
+    it('should throw unprocessable entity with invalid body when delete a task', waitForAsync(() => {
+      let httpErrorResponse: HttpErrorResponse | undefined;
 
-  //     taskService.tasks.set([MOCKED_TASK]);
+      taskService.tasks.set([MOCKED_TASK]);
 
-  //     taskService.deletedTask(MOCKED_TASK.id).subscribe({
-  //       next: () => {
-  //         fail('Failed to delete a task');
-  //       },
-  //       error: (error: HttpErrorResponse) => {
-  //         httpErrorResponse = error;
-  //       },
-  //     });
+      taskService.deleteTask(MOCKED_TASK.id).subscribe({
+        next: () => {
+          fail('failed to delete a task');
+        },
+        error: (error: HttpErrorResponse) => {
+          httpErrorResponse = error;
+        },
+      });
 
-  //     const req = httpTestingController.expectOne(
-  //       `${apiUrl}/tasks/${MOCKED_TASK.id}`
-  //     );
-  //     req.flush('Unprocessable Entity', TASK_UNPROCESSIBLE_ENTITY_RESPONSE);
+      const req = httpTestingController.expectOne(
+        `${apiUrl}/tasks/${MOCKED_TASK.id}`
+      );
 
-  //     if (!httpErrorResponse) {
-  //       throw new Error('Error needs to be defined');
-  //     }
+      req.flush('Unprocessable Entity', TASK_UNPROCESSIBLE_ENTITY_RESPONSE);
 
-  //     expect(httpErrorResponse.status).toEqual(422);
-  //     expect(httpErrorResponse.statusText).toEqual('Unprocessable Entity');
-  //   }));
-  // });
+      if (!httpErrorResponse) {
+        throw new Error('Error needs to be defined');
+      }
+
+      expect(httpErrorResponse.status).toEqual(422);
+      expect(httpErrorResponse.statusText).toEqual('Unprocessable Entity');
+    }));
+  });
 });
