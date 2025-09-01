@@ -3,7 +3,6 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Task } from '../model/task.model';
 import { environment } from '../../../../environments/environment';
 import { Observable, tap } from 'rxjs';
-import { task } from '../../../__mocks__/tasck';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +18,8 @@ export class TaskService {
 
   public readonly _apiUrl = environment.apiUrl;
 
+  public isLoadingTask = signal(false);
+
   public getTasks(): Observable<Task[]> {
     return this._httpClient.get<Task[]>(`${this._apiUrl}/tasks`).pipe(
       tap(tasks => {
@@ -27,17 +28,15 @@ export class TaskService {
     );
   }
 
-  public createTasck(task: Task): Observable<Task> {
-    return this._httpClient
-      .post<Task>(`${this._apiUrl}/tasks`, task)
-      .pipe(tap(tasks => this.insertATasksInTheTasksList(tasks)));
+  public createTask(task: Task): Observable<Task> {
+    return this._httpClient.post<Task>(`${this._apiUrl}/tasks`, task);
   }
 
   public insertATasksInTheTasksList(newTask: Task): void {
-    const updatedTasks = [...this.tasks(), newTask];
-    const sortedTasks = this.getSortedTasks(updatedTasks);
-
-    this.tasks.set(sortedTasks);
+    this.tasks.update(tasks => {
+      const newTasksList = [...tasks, newTask];
+      return this.getSortedTasks(newTasksList);
+    });
   }
 
   public updateTask(updatedTask: Task): Observable<Task> {
@@ -67,10 +66,10 @@ export class TaskService {
     });
   }
 
-  public deletedTask(taskId: string): Observable<Task> {
+  public deleteTask(taskId: string): Observable<Task> {
     return this._httpClient
       .delete<Task>(`${this._apiUrl}/tasks/${taskId}`)
-      .pipe(tap(() => this.deleteATasksInTheTasksList));
+      .pipe(tap(() => this.deleteATasksInTheTasksList(taskId)));
   }
 
   public deleteATasksInTheTasksList(taskId: string): void {
