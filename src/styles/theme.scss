@@ -1,7 +1,8 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 $app-light-theme: mat.define-theme(
   (
@@ -10,11 +11,13 @@ $app-light-theme: mat.define-theme(
       primary: mat.$azure-palette,
       tertiary: mat.$blue-palette,
       use-system-variables: true,
+    system-variables-prefix: sys,
     ),
     typography: (
       brand-family: 'Nunito',
       plain-family: 'Open Sans',
       use-system-variables: true,
+    system-variables-prefix: sys,
     ),
     density: (
       scale: 0,
@@ -29,11 +32,13 @@ $app-dark-theme: mat.define-theme(
       primary: mat.$violet-palette,
       tertiary: mat.$orange-palette,
       use-system-variables: true,
+    system-variables-prefix: sys,
     ),
     typography: (
       brand-family: 'Nunito',
       plain-family: 'Open Sans',
       use-system-variables: true,
+    system-variables-prefix: sys,
     ),
     density: (
       scale: 0,

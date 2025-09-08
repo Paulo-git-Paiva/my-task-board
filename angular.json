@@ -33,6 +33,15 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": [
+                  "color-functions",
+                  "global-builtin",
+                  "mixed-decls"
+                ]
+              }
+            },
             "scripts": [],
             "server": "src/main.server.ts",
             "prerender": false,
