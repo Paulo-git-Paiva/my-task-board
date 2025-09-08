@@ -31,10 +31,9 @@ const MODULES = [
 const COMMONS = [NgClass];
 
 @Component({
-  selector: 'app-include-task-form',
-  standalone: true,
-  imports: [...MODULES, ...COMMONS],
-  template: `<form
+    selector: 'app-include-task-form',
+    imports: [...MODULES, ...COMMONS],
+    template: `<form
     [ngClass]="{
       'cursor-not-allowed animate-pulse': isIncludeTaskFormDisabled(),
       'cursor-pointer': !isIncludeTaskFormDisabled(),
@@ -66,7 +65,7 @@ const COMMONS = [NgClass];
       </mat-select>
     </mat-form-field>
   </form>`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IncludeTaskFormComponent {
   private readonly categoryService = inject(CategoryService);
