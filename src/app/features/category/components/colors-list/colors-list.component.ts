@@ -5,10 +5,9 @@ import { categoryBackgroudColors } from '../../constants/category-colors';
 
 const MODULES = [MatDivider];
 @Component({
-  selector: 'app-colors-list',
-  standalone: true,
-  imports: [...MODULES],
-  template: `<section class="flex flex-col gap-4 w-full h-auto mb-4">
+    selector: 'app-colors-list',
+    imports: [...MODULES],
+    template: `<section class="flex flex-col gap-4 w-full h-auto mb-4">
     <mat-divider class="opacity-50" />
     <div class="flex flex-wrap justify-center item-center mt-4 px-2 gap-4">
       @for (category of categories(); track category.id) {
@@ -21,7 +20,7 @@ const MODULES = [MatDivider];
       }
     </div>
   </section>`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColorsListComponent {
   private readonly CategoryService = inject(CategoryService);

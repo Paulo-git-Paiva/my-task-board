@@ -1,0 +1,44 @@
+name: CI/CD pipeline
+on:
+  pull_request:
+    branches: ['master']
+
+jobs:
+  CI:
+    name: Continous Integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ckeckout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21'
+
+      - name: Installing Dependencies
+        run: npm install
+
+      - name: Listing
+        run: npm run lint
+
+      - name: Testing
+        run: npm run test
+
+      - name: Building
+        run: npm run Build
+
+  CD:
+    name: Continus Deploy
+    runs-on: ubuntu-latest
+    needs: CI
+        steps:
+        uses: actions/checkout@v4
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercell pull --yes --enviroment=production --token${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token${{ secrets.VERCEL_TOKEN }}

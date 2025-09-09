@@ -9,10 +9,9 @@ const COMPONENTS = [IncludeTaskFormComponent];
 const COMMONS = [NgClass];
 
 @Component({
-  selector: 'app-inclusion-form',
-  standalone: true,
-  imports: [...COMPONENTS, ...COMMONS],
-  template: `<div class="grid grid-cols-12 gap-2 mt-8">
+    selector: 'app-inclusion-form',
+    imports: [...COMPONENTS, ...COMMONS],
+    template: `<div class="grid grid-cols-12 gap-2 mt-8">
     <app-include-task-form class="col-span-11" />
     <div
       [ngClass]="{
@@ -26,7 +25,7 @@ const COMMONS = [NgClass];
         }} rounded-full w-10 h-10"></span>
     </div>
   </div>`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InclusionFormComponent {
   private readonly categoryService = inject(CategoryService);
