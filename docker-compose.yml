@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  my-task-board:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-task-board:v1
+    container_name: my-task-board
+    restart: on-failure
+    ports:
+      - 8080:80
